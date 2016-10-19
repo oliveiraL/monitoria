@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/include/template.xhtml">
+	
+	<ui:define name="titulo">
+		<title>Cadastro de Contato</title>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<h1>Novo contato</h1>
+			
+			<h:messages />
+			<fieldset>
+				<p>Nome:</p>
+				<p><h:inputText value="#{contatoMB.contato.nome}"
+					required="true" requiredMessage="Nome obrigatório" />
+				</p>
+				
+				<p>E-mail:</p>
+				<p>
+					<h:inputText value="#{contatoMB.contato.email}"
+						validatorMessage="E-mail inválido">
+						<f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
+					</h:inputText>
+				</p>
+				
+				<p>Telefone:</p>
+				<p>
+					<h:inputText value="#{contatoMB.contato.telefone}"
+						minlength="8"
+						validatorMessage="Número de telefone inválido">
+						<f:validateRegex pattern="[0-9]+" />
+					</h:inputText>
+				</p>
+				
+				<p><h:commandButton action="#{contatoMB.cadastrar}" 
+					value="Cadastrar" /></p>
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
