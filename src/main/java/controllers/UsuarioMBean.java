@@ -11,13 +11,13 @@ import negocio.LoginService;
 
 @ManagedBean
 @RequestScoped
-public class UsuarioMB {
+public class UsuarioMBean {
 	private Usuario usuario;
 	
 	@EJB
 	private LoginService loginService;
 	
-	public UsuarioMB() {
+	public UsuarioMBean() {
 		usuario = new Usuario();
 	}
 	
@@ -30,9 +30,9 @@ public class UsuarioMB {
 	}
 
 	public String login() {
-		int res = loginService.login(usuario.getLogin(), usuario.getSenha());
+		int res = loginService.login("", "");
 		if (res == 1) {
-			return "/interna/cadastra.jsf";
+			return "/pages/index.jsf";
 		} else if (res == 0) {
 			FacesMessage msg = new FacesMessage("Usuario e/ou senha incorretos");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);

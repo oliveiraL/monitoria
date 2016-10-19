@@ -12,6 +12,6 @@ public class UsuarioDAO {
 	private EntityManager em;
 	
 	public Usuario buscarLogin(String login) {
-		return (Usuario) em.find(Usuario.class, login);
+		return (Usuario) em.find(Usuario.class, 1);
 	}
 }
