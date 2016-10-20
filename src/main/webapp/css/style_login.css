@@ -50,27 +50,19 @@ input:focus { outline: none; }
 /* Label */
 
 label {
-	color: #999; 
+	color: #4a89dc;
 	font-size: 18px;
 	font-weight: normal;
 	position: absolute;
 	pointer-events: none;
 	left: 5px;
-	top: 10px;
-	-webkit-transition:all 0.2s ease;
+	top: -20px;
+	 -webkit-transform: scale(.75);
+          transform: scale(.75); left: -2px;
 	transition: all 0.2s ease;
 }
 
 
-/* active */
-
-input:focus ~ label, input.used ~ label {
-	top: -20px;
-  -webkit-transform: scale(.75);
-          transform: scale(.75); left: -2px;
-	/* font-size: 14px; */
-	color: #4a89dc;
-}
 
 
 /* Underline */

@@ -7,7 +7,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import dominio.Usuario;
-import negocio.LoginService;
+import exception.LoginException;
+import service.LoginService;
 
 @ManagedBean
 @RequestScoped
@@ -30,19 +31,16 @@ public class UsuarioMBean {
 	}
 
 	public String login() {
-		int res = loginService.login("", "");
-		if (res == 1) {
+		try {
+			loginService.login(usuario.getLogin(), usuario.getSenha());
 			return "/pages/index.jsf";
-		} else if (res == 0) {
-			FacesMessage msg = new FacesMessage("Usuario e/ou senha incorretos");
+		} catch (LoginException e) {
+			// TODO Auto-generated catch block
+			FacesMessage msg = new FacesMessage(e.getMessage());
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			FacesContext.getCurrentInstance().addMessage("", msg);
 			return null;
-		} else {
-			FacesMessage msg = new FacesMessage("Usuario nao encontrado");
-			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			FacesContext.getCurrentInstance().addMessage("", msg);
-			return null;
-		}
+		}	
+		
 	}
 }

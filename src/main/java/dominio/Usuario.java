@@ -37,6 +37,9 @@ public class Usuario {
 	@Column
 	private String senha;
 	
+	@Column
+	private Boolean ativo;
+	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
@@ -64,6 +67,16 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public Boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+	
+	
 	
 	
 }

@@ -1,4 +1,4 @@
-package negocio;
+package service;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import dao.UsuarioDAO;
 import dominio.Usuario;
+import exception.LoginException;
 
 @Stateless
 public class LoginService {
@@ -14,12 +15,17 @@ public class LoginService {
 	private UsuarioDAO usuarioDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public int login(String l, String s) {
+	public void login(String l, String s) throws LoginException{
 		Usuario u = usuarioDAO.buscarLogin(l);
 		if (u != null) {
-			if (u.getSenha().equals(s))
-				return 1;
-			else return 0;
-		} else return -1;
+			if(!u.isAtivo()){
+				throw new LoginException("usuario inativo.");
+			}
+			if (!u.getSenha().equals(s)){
+				throw new LoginException("usuario e/ou senha incorreto.");
+			}
+		} else{
+			throw new LoginException("usuario não cadastrado");
+		}
 	}
 }
