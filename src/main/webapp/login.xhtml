@@ -20,14 +20,14 @@
 <img src="/monitoria/imagens/logo-monitoria.png" style="width: 80%; margin-bottom: 40px;" />
 
   <div class="group">
-	<h:inputText value="#{usuarioMBean.usuario.login}" /><span class="highlight"></span><span class="bar"></span>
+	<h:inputText value="#{loginMBean.usuario.login}" /><span class="highlight"></span><span class="bar"></span>
     <label>Login</label>
   </div>
   <div class="group">
-    <h:inputSecret value="#{usuarioMBean.usuario.senha}" /><span class="highlight"></span><span class="bar"></span>
+    <h:inputSecret value="#{loginMBean.usuario.senha}" /><span class="highlight"></span><span class="bar"></span>
     <label>Senha</label>
   </div>
-  <h:commandButton class="button buttonBlue" action="#{usuarioMBean.login}" value="Sing-in" >
+  <h:commandButton class="button buttonBlue" action="#{loginMBean.login}" value="Sing-in" >
     
   </h:commandButton>
 </h:form>
