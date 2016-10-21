@@ -25,6 +25,9 @@ public class Pessoa {
 	private String cpf;
 	
 	@Column
+	private String email;
+	
+	@Column
 	private String matricula;
 	
 	public Pessoa() {
@@ -70,6 +73,16 @@ public class Pessoa {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 	
 	
 }

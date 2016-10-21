@@ -5,7 +5,10 @@ import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
+import dominio.Usuario;
 import service.GenericService;
 
 
@@ -14,8 +17,9 @@ public class GenericMBean<T> {
 	@EJB
 	private GenericService<T> service;
 	
-	private T obj;
+	protected T obj;
 	
+	private Usuario usuarioLogado;
 	 
 	public void salvar(T obj) {
 		service.salvar(obj);
@@ -40,6 +44,20 @@ public class GenericMBean<T> {
 	public void setObj(T obj) {
 		this.obj = obj;
 	}
+
+	public Usuario getUsuarioLogado() {
+		if(this.usuarioLogado == null){
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
+			usuarioLogado = (Usuario) sessaoHttp.getAttribute("usuarioLogado");
+		}
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+	
 	
 	
 }

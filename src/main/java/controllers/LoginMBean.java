@@ -3,6 +3,7 @@ package controllers;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +12,7 @@ import exception.LoginException;
 import service.LoginService;
 
 @ManagedBean
-@javax.faces.bean.RequestScoped
+@RequestScoped
 public class LoginMBean {
 	private Usuario usuario;
 	
@@ -32,7 +33,7 @@ public class LoginMBean {
 
 	public String login() {
 		try {
-			loginService.login(usuario.getLogin(), usuario.getSenha());
+			usuario = loginService.login(usuario.getLogin(), usuario.getSenha());
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
 			sessaoHttp.setAttribute("usuarioLogado", usuario);

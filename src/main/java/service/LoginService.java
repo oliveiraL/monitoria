@@ -15,7 +15,7 @@ public class LoginService {
 	private UsuarioDAO usuarioDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void login(String l, String s) throws LoginException{
+	public Usuario login(String l, String s) throws LoginException{
 		Usuario u = usuarioDAO.buscarLogin(l);
 		if (u != null) {
 			if(!u.isAtivo()){
@@ -27,5 +27,7 @@ public class LoginService {
 		} else{
 			throw new LoginException("usuario não cadastrado");
 		}
+		
+		return u;
 	}
 }

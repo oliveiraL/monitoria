@@ -41,6 +41,15 @@
 		      margin-bottom: 40px;
 		      z-index: 900;
 		    }
+		    hr.menu {    
+		    	display: block;
+				height: 1px;
+				border: 0;
+				border-top: 1px solid #263238;
+				margin: 1em 0;
+				padding: 0;
+				background-color: #263238;
+    		}
 		    </style>
   </h:head>
   <h:body>
@@ -70,25 +79,32 @@
         <header class="demo-drawer-header">
           <img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
           <div class="demo-avatar-dropdown">
-            <span>hello@example.com</span>
+            <span><h:outputLabel value="#{perfilMBean.obj.pessoa.nome}" /></span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float:right;">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
               <span class="visuallyhidden">Accounts</span>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item">hello@example.com</li>
-              <li class="mdl-menu__item">info@example.com</li>
-              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+              <li class="mdl-menu__item">#{perfilMBean.obj.pessoa.email}</li>
+              <li class="mdl-menu__item">#{perfilMBean.obj.pessoa.matricula}</li>
+              <li class="mdl-menu__item">#{perfilMBean.obj.curso}</li>
+              <!-- <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li> -->
             </ul>
           </div>
         </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800" style="text-align: center;">
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Duvidas</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Minhas Duvidas</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Notificações</a>
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><span class="visuallyhidden">Log-Out</span></a>
+          <hr class="menu"/>
+          <span style="color:#6f8591; !important;text-transform: uppercase;"><b>#{perfilMBean.obj.papel.descricao}</b></span>
+          <h:form prependId="false">
+	          <ui:repeat var="diciplina" value="#{perfilMBean.obj.diciplinas}">
+	          	<h:commandLink action="#" value="" class="mdl-navigation__link"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>#{diciplina.codigo}</h:commandLink>
+	          </ui:repeat>
+          </h:form>
+          <!-- <a class="mdl-navigation__link" href=""><span class="visuallyhidden">Log-Out</span></a> -->
         </nav>
       </div>
       <div class="mdl-layout__content mdl-color--grey-100">
