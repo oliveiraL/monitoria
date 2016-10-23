@@ -6,6 +6,8 @@ import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpSession;
 
 import dominio.Usuario;
@@ -18,6 +20,8 @@ public class GenericMBean<T> {
 	private GenericService<T> service;
 	
 	protected T obj;
+	
+	protected ListDataModel<T> listagem;
 	
 	private Usuario usuarioLogado;
 	 
@@ -57,6 +61,16 @@ public class GenericMBean<T> {
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
+
+	public ListDataModel<T> getListagem() {
+		return listagem = new ListDataModel<>(service.listar());
+	}
+
+	public void setListagem(ListDataModel<T> listagem) {
+		this.listagem = listagem;
+	}
+	
+	
 	
 	
 	
