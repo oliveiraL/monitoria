@@ -11,8 +11,6 @@ public class CrudDao<T> {
 	@PersistenceContext
 	private EntityManager em;
 	
-	private Class<T> typeClass;
-	
 	public Query getQuey(String hql){
 		return  em.createQuery(hql);
 	}
@@ -28,9 +26,15 @@ public class CrudDao<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<T> listar() {
-		String qs = "select * from "+typeClass.getName();
+	public List<T> listar(Class<T> typeClass) {
+		String qs = "select d from "+typeClass.getName()+" d";
 		Query q = getQuey(qs);
 		return (List<T>) q.getResultList();
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public T finByID(int id, Class<T> typeClass) {
+		return em.find(typeClass, id);
 	}
 }

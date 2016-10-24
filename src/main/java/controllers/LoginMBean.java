@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import service.LoginService;
 
 @ManagedBean
 @RequestScoped
+@SessionScoped
 public class LoginMBean {
 	private Usuario usuario;
 	
@@ -46,5 +48,12 @@ public class LoginMBean {
 			return null;
 		}	
 		
+	}
+	
+	public String logOut(){
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
+		sessaoHttp.setAttribute("usuarioLogado", null);
+		return "/login.jsf";
 	}
 }

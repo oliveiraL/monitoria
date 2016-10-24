@@ -2,15 +2,13 @@ package service;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import dao.CrudDao;
 
-@Stateless
-public class GenericService<T> {
+public class CrudService<T> {
 	@Inject
 	private CrudDao<T> crudDao;
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -30,10 +28,9 @@ public class GenericService<T> {
 	public List<T> listar(Class<T> typeClass) {
 		return crudDao.listar(typeClass);
 	}
+	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public T finByID(int id, Class<T> typeClass) {
-		return crudDao.finByID(id, typeClass);
+		return crudDao.finByID(id,typeClass);
 	}
-	
-	
 }

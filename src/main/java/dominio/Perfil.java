@@ -40,7 +40,7 @@ public class Perfil {
 	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="perfil_disciplina", joinColumns={@JoinColumn(name="perfil_id")}, 
     inverseJoinColumns={@JoinColumn(name="disciplina_id")})
-    private List<Diciplina> diciplinas;
+    private List<Disciplina> disciplinas;
 	
 	public Perfil() {
 		// TODO Auto-generated constructor stub
@@ -78,12 +78,12 @@ public class Perfil {
 		this.papel = papel;
 	}
 
-	public List<Diciplina> getDiciplinas() {
-		return diciplinas;
+	public List<Disciplina> getDiciplinas() {
+		return disciplinas;
 	}
 
-	public void setDiciplinas(List<Diciplina> diciplinas) {
-		this.diciplinas = diciplinas;
+	public void setDiciplinas(List<Disciplina> diciplinas) {
+		this.disciplinas = diciplinas;
 	}
 
 	public String getCurso() {

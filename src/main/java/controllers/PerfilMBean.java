@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import dominio.Diciplina;
+import dominio.Disciplina;
 import dominio.Perfil;
 import dominio.Pessoa;
 import service.PerfilService;

@@ -13,4 +13,6 @@ public class UsuarioMBean extends GenericMBean<Usuario> {
 		// TODO Auto-generated constructor stub
 		obj = new Usuario();
 	}
+	
+	
 }

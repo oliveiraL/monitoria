@@ -10,29 +10,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="respostas")
-public class Resposta {
+@Table(name="curtidas")
+public class Curtir {
 	@Id
-	@Column(name="id_resposta", nullable=false)
+	@Column(name="id_curtida", nullable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-
-	@Column(columnDefinition="VARCHAR(2000)", nullable=true)
-	private String descricao;
-
-	@Column
-	private boolean ativo;
-
 	@OneToOne
 	@JoinColumn(name="duvida_id")
 	private Duvida duvida;
-			
+	
 	@OneToOne
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa;
-	
-	public Resposta() {
+
+	public Curtir() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,22 +35,6 @@ public class Resposta {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
 	}
 
 	public Duvida getDuvida() {
@@ -75,8 +52,6 @@ public class Resposta {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
-	
 	
 	
 }

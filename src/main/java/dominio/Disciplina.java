@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="diciplinas")
-public class Diciplina {
+@Table(name="disciplinas")
+public class Disciplina {
 	
 	@Id
-	@Column(name="id_diciplina", nullable=false)
+	@Column(name="id_disciplina", nullable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
@@ -53,5 +53,12 @@ public class Diciplina {
 		this.descricao = descricao;
 	}
 
+
+	@Override
+	public String toString() {
+		return descricao;
+	}
+
+	
 	
 }

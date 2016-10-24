@@ -1,4 +1,7 @@
+
 package dominio;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,13 +23,82 @@ public class Duvida {
 	@Column
 	private String assunto;
 
-	@Column
+	@Column(name="descricao", columnDefinition="VARCHAR(2000)", nullable=true)
 	private String descricao;
 
 	@Column
 	private boolean ativo;
+	
+	@Column
+	private Date dataCadastro;
 
 	@OneToOne
-	@JoinColumn(name="diciplina_id")
-	private Diciplina diciplina;
+	@JoinColumn(name="disciplina_id")
+	private Disciplina disciplina;
+	
+	@OneToOne
+	@JoinColumn(name="pessoa_id")
+	private Pessoa pessoa;
+
+	public Duvida() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAssunto() {
+		return assunto;
+	}
+
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina diciplina) {
+		this.disciplina = diciplina;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	
+	
 }

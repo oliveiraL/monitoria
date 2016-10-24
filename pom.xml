@@ -29,7 +29,11 @@
 	        <artifactId>primefaces-extensions</artifactId>
 	        <version>4.0.0</version>
 	    </dependency>
-		
+		<dependency>
+		    <groupId>com.github.MaterialPrime</groupId>
+		    <artifactId>material-prime</artifactId>
+		    <version>develop-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>monitoria</finalName>
@@ -45,4 +49,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
 </project>

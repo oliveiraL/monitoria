@@ -20,25 +20,31 @@ public class GenericMBean<T> {
 	private GenericService<T> service;
 	
 	protected T obj;
-	
+		
 	protected ListDataModel<T> listagem;
 	
 	private Usuario usuarioLogado;
-	 
-	public void salvar(T obj) {
-		service.salvar(obj);
+	
+	public GenericMBean() {
+		// TODO Auto-generated constructor stub
 	}
 	 
-	public void atualizar(T obj) {
+	public String salvar() {
+		service.salvar(obj);
+		return "";
+	}
+	 
+	public void atualizar() {
 		service.atualizar(obj);
 	}
 	 
-	public void remover(T obj) {
+	public void remover() {
 		service.remover(obj);
 	}
 	 
+	@SuppressWarnings("unchecked")
 	public List<T> listar() {
-		return service.listar();
+		return service.listar((Class<T>) obj.getClass());
 	}
 
 	public T getObj() {
@@ -62,12 +68,17 @@ public class GenericMBean<T> {
 		this.usuarioLogado = usuarioLogado;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ListDataModel<T> getListagem() {
-		return listagem = new ListDataModel<>(service.listar());
+		return listagem = new ListDataModel<>(service.listar((Class<T>) obj.getClass()));
 	}
 
 	public void setListagem(ListDataModel<T> listagem) {
 		this.listagem = listagem;
+	}
+	
+	public String getDir(){
+		return "";
 	}
 	
 	
