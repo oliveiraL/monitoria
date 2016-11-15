@@ -26,10 +26,13 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	@EJB
 	private DuvidaService duvidaService;
 	
+	private boolean curtir;
+	
 	
 	public DuvidaMBean() {
 		// TODO Auto-generated constructor stub
 		obj = new Duvida();
+		curtir = false;
 	}
 	
 	public String list(){
@@ -59,6 +62,14 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 		listDuvidas = null;
 		return "/pages/index.jsf";
 	}
+	
+	public String detalhesDuvida(){
+		return "/pages/duvida/view.jsf";
+	}
+	
+	public void mostrarDuvida(){
+		obj = duvidaService.finByID(obj.getId(), Duvida.class);
+	}
 
 
 	public int getIdDiciplina() {
@@ -81,6 +92,24 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 
 	public void setListDuvidas(List<Duvida> listDuvidas) {
 		this.listDuvidas = listDuvidas;
+	}
+	
+	public void curtida(){
+		curtir = true;
+	}
+
+	/**
+	 * @return the curtir
+	 */
+	public boolean isCurtir() {
+		return curtir;
+	}
+
+	/**
+	 * @param curtir the curtir to set
+	 */
+	public void setCurtir(boolean curtir) {
+		this.curtir = curtir;
 	}
 	
 	

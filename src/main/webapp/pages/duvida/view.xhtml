@@ -13,7 +13,7 @@
 			    color: black !important;
 			}
 		</style>
-		<ui:repeat var="duvida" value="#{duvidaMBean.listDuvidas}">
+	
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			
 			
@@ -22,7 +22,7 @@
 						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
 					</div>
 					<div class="col-sm-6" style="padding: 0; color: rgba(0,0,0,.54);">
-					<span>#{duvida.pessoa.nome}</span><br/>
+					<span>#{duvidaMBean.obj.pessoa.nome}</span><br/>
 					</div>
 					<div class="col-sm-4 pull-right" style="color: rgba(0,0,0,.54); text-align: right;">
 						<h:outputText value="#{duvida.dataCadastro}" >
@@ -31,16 +31,16 @@
 						
 					</div>
 					<div class="col-sm-6 pull-right" style="color: rgba(0,0,0,.54);text-align: right;">
-						#{duvida.disciplina.descricao}
+						#{duvidaMBean.obj.disciplina.descricao}
 					</div>				
 				</div>
 		
 			
 			  <div class="mdl-card__title">
-			    <h2 class="mdl-card__title-text" style="color: black;">#{duvida.assunto}</h2>
+			    <h2 class="mdl-card__title-text" style="color: black;">#{duvidaMBean.obj.assunto}</h2>
 			  </div>
 			  <div class="mdl-card__supporting-text">
-			    #{duvida.descricao}
+			    #{duvidaMBean.obj.descricao}
 			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
 			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
@@ -50,12 +50,9 @@
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
 			    </h:commandLink>
 			    
-			    <h:commandLink action="#{duvidaMBean.detalhesDuvida()}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" >
-			  		<i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
-			  	</h:commandLink>
 			  </div>
 			</div>
-		</ui:repeat>
+	
 		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			<div class="row" style="margin: 20 20 0 20 ;">
 				<div class="col-sm-1" style="padding: 0;">
@@ -104,9 +101,6 @@
 		    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 			  <i class="fa fa-file-text-o" aria-hidden="true"></i> Responder
 			</button>
-			<h:commandLink action="#{duvidaMBean.detalhesDuvida()}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right" >		
-				  <i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
-			</h:commandLink>
 		  </div>
 		</div>
 		
