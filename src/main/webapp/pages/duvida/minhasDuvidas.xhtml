@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/include/template.xhtml">
+	<ui:define name="conteudo">
+		<h:form prependId="false">
+		<style>
+			.mdl-button .mdl-badge[data-badge]:after {
+			    top: -5px;
+			    right: -26px;
+			    background-color: white !important;
+			    color: black !important;
+			}
+		</style>
+		<ui:repeat var="duvida" value="#{duvidaMBean.listagemDuvidasPorPessoa}">
+			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+			
+			
+				<div class="row" style="margin: 20 20 0 20 ;">
+					<div class="col-sm-1" style="padding: 0;">
+						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
+					</div>
+					<div class="col-sm-6" style="padding: 0; color: rgba(0,0,0,.54);">
+					<span>#{duvida.pessoa.nome}</span><br/>
+					</div>
+					<div class="col-sm-4 pull-right" style="color: rgba(0,0,0,.54); text-align: right;">
+						<h:outputText value="#{duvida.dataCadastro}" >
+						    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
+						</h:outputText>
+						
+					</div>
+					<div class="col-sm-6 pull-right" style="color: rgba(0,0,0,.54);text-align: right;">
+						#{duvida.disciplina.descricao}
+					</div>				
+				</div>
+		
+			
+			  <div class="mdl-card__title">
+			    <h2 class="mdl-card__title-text" style="color: black;">#{duvida.assunto}</h2>
+			  </div>
+			  <div class="mdl-card__supporting-text">
+			    #{duvida.descricao}
+			  </div>
+			  <div class="mdl-card__actions mdl-card--border">
+			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
+			    </h:commandLink>
+			    <h:commandLink action="#{respostaMBean.respoder(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
+					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
+			    </h:commandLink>
+			    
+			    <h:commandLink action="#{duvidaMBean.detalhesDuvida(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right" >
+			  		<i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
+			  	</h:commandLink>
+			  </div>
+			</div>
+		</ui:repeat>
+		
+		<h:commandLink action="#{duvidaMBean.novo()}" value="" id="view-source"  class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;margin:40px;">
+			  <i class="material-icons">add</i> 
+		</h:commandLink>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -122,7 +122,11 @@
        		<h:commandLink action="#{duvidaMBean.list()}" class="mdl-navigation__link" immediate="true">
 				<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">sentiment_neutral</i>Duvidas
 			</h:commandLink>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">create</i>Minhas Duvidas</a>
+			
+			<h:commandLink action="#{duvidaMBean.listDuvidasPorPessoa(perfilMBean.obj.pessoa)}" class="mdl-navigation__link" immediate="true">
+          		<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">create</i>Minhas Duvidas
+          	</h:commandLink>
+          	
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">notifications</i>Notificações</a>
           <hr class="menu"/>
           <span style="color:#6f8591; !important;text-transform: uppercase;"><b>#{perfilMBean.obj.papel.descricao}</b></span>

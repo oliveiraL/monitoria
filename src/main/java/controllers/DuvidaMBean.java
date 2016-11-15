@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 import dominio.Disciplina;
 import dominio.Duvida;
+import dominio.Pessoa;
 import service.DisciplinaService;
 import service.DuvidaService;
 @ManagedBean
@@ -19,6 +20,8 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	private int idDiciplina;
 	
 	private List<Duvida> listDuvidas;
+	
+	private List<Duvida> listagemDuvidasPorPessoa;
 	
 	@EJB
 	private DisciplinaService diciplinaService;
@@ -68,6 +71,12 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 		return "/pages/duvida/view.jsf";
 	}
 	
+	public String listDuvidasPorPessoa(Pessoa pessoa){
+		obj.setPessoa(pessoa);
+		listagemDuvidasPorPessoa = duvidaService.listDuvidasPorPessoa(pessoa);
+		return "/pages/duvida/minhasDuvidas.jsf";
+	}
+	
 	public String voltar(){
 		return "/pages/index.jsf";
 	}
@@ -115,6 +124,20 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	 */
 	public void setCurtir(boolean curtir) {
 		this.curtir = curtir;
+	}
+
+	/**
+	 * @return the listagemDuvidasPorPessoa
+	 */
+	public List<Duvida> getListagemDuvidasPorPessoa() {
+		return listagemDuvidasPorPessoa;
+	}
+
+	/**
+	 * @param listagemDuvidasPorPessoa the listagemDuvidasPorPessoa to set
+	 */
+	public void setListagemDuvidasPorPessoa(List<Duvida> listagemDuvidasPorPessoa) {
+		this.listagemDuvidasPorPessoa = listagemDuvidasPorPessoa;
 	}
 	
 	
