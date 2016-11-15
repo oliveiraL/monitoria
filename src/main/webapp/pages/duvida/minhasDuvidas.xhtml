@@ -13,6 +13,7 @@
 			    color: black !important;
 			}
 		</style>
+		<ui:fragment rendered = "#{duvidaMBean.listagemDuvidasPorPessoa.size() > 0}">
 		<ui:repeat var="duvida" value="#{duvidaMBean.listagemDuvidasPorPessoa}">
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			
@@ -56,6 +57,15 @@
 			  </div>
 			</div>
 		</ui:repeat>
+		</ui:fragment>
+		
+	    <ui:fragment rendered = "#{duvidaMBean.listagemDuvidasPorPessoa.size() == 0}">
+	    
+			<div class="col-sm-12" style="color: rgba(0,0,0,.54);">
+			    Você não fez perguntas.
+			 </div>
+		
+		</ui:fragment>
 		
 		<h:commandLink action="#{duvidaMBean.novo()}" value="" id="view-source"  class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;margin:40px;">
 			  <i class="material-icons">add</i> 
