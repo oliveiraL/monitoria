@@ -50,7 +50,7 @@
 			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
 			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
 			    </h:commandLink>
-			    <h:commandLink action="#{respostaMBean.respoder(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
+			    <h:commandLink action="#{respostaMBean.respoder(duvidaMBean.obj)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
 			    </h:commandLink>
 			    
