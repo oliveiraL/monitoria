@@ -63,8 +63,13 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 		return "/pages/index.jsf";
 	}
 	
-	public String detalhesDuvida(){
+	public String detalhesDuvida(Duvida duvida){
+		obj = duvida;
 		return "/pages/duvida/view.jsf";
+	}
+	
+	public String voltar(){
+		return "/pages/index.jsf";
 	}
 	
 	public void mostrarDuvida(){

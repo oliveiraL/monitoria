@@ -50,7 +50,7 @@
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
 			    </h:commandLink>
 			    
-			    <h:commandLink action="#{duvidaMBean.detalhesDuvida()}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" >
+			    <h:commandLink action="#{duvidaMBean.detalhesDuvida(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right" >
 			  		<i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
 			  	</h:commandLink>
 			  </div>
@@ -104,9 +104,9 @@
 		    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 			  <i class="fa fa-file-text-o" aria-hidden="true"></i> Responder
 			</button>
-			<h:commandLink action="#{duvidaMBean.detalhesDuvida()}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right" >		
+			<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right">
 				  <i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
-			</h:commandLink>
+			</button>
 		  </div>
 		</div>
 		
