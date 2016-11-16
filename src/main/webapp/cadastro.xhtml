@@ -22,26 +22,22 @@
 		color: orange;
     	text-decoration: initial;
 	}
-	
-	#link:hover{
-		text-decoration: underline;
-	}
-	
 </style>
 
 <p:messages id="messagem" autoUpdate="true" closable="true"/>
-<img src="/monitoria/imagens/logo-monitoria.png" style="width: 80%; margin-bottom: 40px;" />
-
   <div class="group">
-	<h:inputText value="#{loginMBean.usuario.login}" /><span class="highlight"></span><span class="bar"></span>
-    <label>Login</label>
+	<h:inputText value="#{usuarioMBean.obj.login}" required="true" requiredMessage="Por favor, preencha o campo usuario."/><span class="highlight"></span><span class="bar"></span>
+    <label style="left: -12 !important;">Usuario do sigaa</label>
   </div>
   <div class="group">
-    <h:inputSecret value="#{loginMBean.usuario.senha}" /><span class="highlight"></span><span class="bar"></span>
-    <label>Senha</label>
+    <h:inputSecret value="#{usuarioMBean.obj	.senha}" required="true" requiredMessage="Por favor, preencha o campo senha." /><span class="highlight"></span><span class="bar"></span>
+    <label> Senha</label>
   </div>
-  <h:commandButton class="button buttonBlue" action="#{loginMBean.login}" value="Sing-in" /> 
-	<div><h:commandLink action="#{usuarioMBean.novo()}" value="Cadastre-se" id="link" /> </div>
+    <div class="group">
+    <h:inputSecret value="#{usuarioMBean.confirmarSenha}" required="true" requiredMessage="Por favor, preencha o campo confirmar senha." /><span class="highlight"></span><span class="bar"></span>
+    <label  style="left: -12 !important;">Confirmar Senha</label>
+  </div>
+  <h:commandButton class="button buttonBlue" action="#{usuarioMBean.salvar}" value="Cadastrar" /> 
 </h:form>
 <footer>
   <p>IMD-UFRN</p>

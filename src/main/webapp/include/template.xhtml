@@ -80,6 +80,7 @@
   </h:head>
   <h:body>
   
+  
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -99,7 +100,7 @@
         	<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
         </div>
         <div class="col-sm-6">
-        	<p>#{perfilMBean.obj.pessoa.nome} #{perfilMBean.obj.pessoa.matricula}</p>
+        	<p>#{perfilMBean.obj.pessoa.nome} #{perfilMBean.obj.matricula}</p>
         </div>
         </div>
           <div class="demo-avatar-dropdown">
@@ -127,7 +128,7 @@
           <hr class="menu"/>
           <span style="color:#6f8591; !important;text-transform: uppercase;"><b>#{perfilMBean.obj.papel.descricao}</b></span>
           <h:form prependId="false">
-	          <ui:repeat var="diciplina" value="#{perfilMBean.obj.diciplinas}">
+	          <ui:repeat var="diciplina" value="#{perfilMBean.obj.disciplinas}">
 	          	<h:commandLink action="#" value="" class="mdl-navigation__link"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>#{diciplina.codigo}</h:commandLink>
 	          </ui:repeat>
           </h:form>

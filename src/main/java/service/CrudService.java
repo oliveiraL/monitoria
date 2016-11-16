@@ -7,12 +7,13 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import dao.CrudDao;
+import exception.NegocioException;
 
 public class CrudService<T> {
 	@Inject
 	private CrudDao<T> crudDao;
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(T obj) {
+	public void salvar(T obj) throws NegocioException {
 		crudDao.salvar(obj);
 	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

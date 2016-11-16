@@ -27,6 +27,9 @@ public class Perfil {
 	private boolean ativo;
 	
 	@Column
+	private Integer id_sigaa;
+	
+	@Column
 	private String curso;
 	
 	@OneToOne
@@ -41,6 +44,9 @@ public class Perfil {
     @JoinTable(name="perfil_disciplina", joinColumns={@JoinColumn(name="perfil_id")}, 
     inverseJoinColumns={@JoinColumn(name="disciplina_id")})
     private List<Disciplina> disciplinas;
+	
+	@Column
+	private String matricula;
 	
 	public Perfil() {
 		// TODO Auto-generated constructor stub
@@ -78,20 +84,36 @@ public class Perfil {
 		this.papel = papel;
 	}
 
-	public List<Disciplina> getDiciplinas() {
-		return disciplinas;
-	}
-
-	public void setDiciplinas(List<Disciplina> diciplinas) {
-		this.disciplinas = diciplinas;
-	}
-
 	public String getCurso() {
 		return curso;
 	}
 
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public Integer getId_sigaa() {
+		return id_sigaa;
+	}
+
+	public void setId_sigaa(Integer id_sigaa) {
+		this.id_sigaa = id_sigaa;
 	}
 	
 	

@@ -27,8 +27,6 @@ public class Pessoa {
 	@Column
 	private String email;
 	
-	@Column
-	private String matricula;
 	
 	public Pessoa() {
 		// TODO Auto-generated constructor stub
@@ -64,14 +62,6 @@ public class Pessoa {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
 	}
 
 	public String getEmail() {

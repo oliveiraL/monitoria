@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="papel")
 public class Papel {
+	
 	@Id
 	@Column(name="id_papel", nullable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -49,5 +50,10 @@ public class Papel {
 		this.role = role;
 	}
 	
+	public static final int ROLE_ALUNO = 1;
+	
+	public static final int ROLE_DOCENTE = 2;
+	
+	public static final int ROLE_MONITOR = 3;
 	
 }
