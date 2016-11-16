@@ -1,21 +1,16 @@
 package service;
 
-import java.awt.JobAttributes;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.json.Json;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import dao.PerfilDao;
 import dominio.Disciplina;
 import dominio.Papel;
 import dominio.Perfil;
 import dominio.Pessoa;
-import exception.APIException;
+
 import exception.NegocioException;
 
 @Stateless
@@ -54,8 +49,9 @@ public class PerfilService extends GenericService<Perfil>{
 			perfil.setMatricula(jsonObject.getString("matricula"));
 			perfil.setPapel(papel);
 			String json = apiService.turmasDiscente(perfil.getId_sigaa().toString());
-			//String json = apiService.perfilUsuario(String.valueOf(jsonObject.getInt("idUsuario")));
 			List<Disciplina> dis = disciplinaService.getDisciplinas(json);
+			perfil.setDisciplinas(dis);
+			salvar(perfil);
 		}
 	}
 	

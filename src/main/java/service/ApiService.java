@@ -19,8 +19,9 @@ public class ApiService {
 		}
 	}
 	
-	public String dadosUsuario(String login){
-		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/usuario-services/services/usuario/"+login+"/info");
+	
+	public String dadosUsuario(){
+		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/usuario-services/services/usuario/info");
 	}
 	
 	public String perfilUsuario(String idUsuario){
@@ -28,6 +29,6 @@ public class ApiService {
 	}
 	
 	public String turmasDiscente(String idDiscente){
-		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/ensino-services/services/consulta/matriculacomponente/discente/594645");
+		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/ensino-services/services/consulta/turmas/usuario/discente/"+idDiscente);
 	}
 }

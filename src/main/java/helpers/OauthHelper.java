@@ -140,6 +140,13 @@ public class OauthHelper {
 	public static String getAccessToken() {
 		return accessToken;
 	}
+
+	/**
+	 * @param accessToken the accessToken to set
+	 */
+	public static void setAccessToken(String accessToken) {
+		OauthHelper.accessToken = accessToken;
+	}
 	
 
 }

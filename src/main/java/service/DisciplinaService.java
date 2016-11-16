@@ -21,7 +21,7 @@ public class DisciplinaService extends CrudService<Disciplina> {
 	public List<Disciplina> getDisciplinas(String json) throws NegocioException{
 		JSONArray ja = new JSONArray(json);
 		ArrayList<Disciplina> dis = new ArrayList<>();
-		for(int i = 0; i<= ja.length(); i++) {
+		for(int i = 0; i< ja.length(); i++) {
             JSONObject jo = ja.getJSONObject(i);
             
             Disciplina d = disciplinaDao.getCodigo(jo.getString("codigoComponente"));

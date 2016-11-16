@@ -17,13 +17,13 @@ public class PessoaService extends CrudService<Pessoa> {
 
 	public Pessoa cadastrarPessoa(String json) throws NegocioException{		
 		JSONObject jsonObject = new JSONObject(json);
-		if(pessoaDao.emailCadastrado(jsonObject.getString("email")))
-			throw new NegocioException("Pessoa já cadastrada.");
-		
-		Pessoa pessoa = new Pessoa();
+		Pessoa pessoa = pessoaDao.emailCadastrado(jsonObject.getString("email"));
+		if(pessoa != null)
+			return pessoa; 
+		pessoa = new Pessoa();
 		pessoa.setNome(jsonObject.getString("nome"));
 		pessoa.setEmail(jsonObject.getString("email"));
-		//salvar(pessoa);
+		salvar(pessoa);
 		return pessoa;
 	}
 	
