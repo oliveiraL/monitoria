@@ -78,12 +78,12 @@ public class Perfil {
 		this.papel = papel;
 	}
 
-	public List<Disciplina> getDiciplinas() {
+	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDiciplinas(List<Disciplina> diciplinas) {
-		this.disciplinas = diciplinas;
+	public void setDiciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	public String getCurso() {

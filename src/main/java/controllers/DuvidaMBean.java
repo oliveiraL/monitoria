@@ -21,8 +21,6 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	
 	private List<Duvida> listDuvidas;
 	
-	private List<Duvida> listagemDuvidasPorPessoa;
-	
 	@EJB
 	private DisciplinaService diciplinaService;
 	
@@ -72,9 +70,13 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	}
 	
 	public String listDuvidasPorPessoa(Pessoa pessoa){
-		obj.setPessoa(pessoa);
-		listagemDuvidasPorPessoa = duvidaService.listDuvidasPorPessoa(pessoa);
-		return "/pages/duvida/minhasDuvidas.jsf";
+		listDuvidas = duvidaService.listDuvidasPorPessoa(pessoa);
+		return "/pages/duvida/list.jsf";
+	}
+	
+	public String listDuvidasPorDisciplina(Disciplina disciplina){
+		listDuvidas = duvidaService.listDuvidasPorDisciplina(disciplina);
+		return "/pages/duvida/list.jsf";
 	}
 	
 	public String voltar(){
@@ -125,21 +127,5 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	public void setCurtir(boolean curtir) {
 		this.curtir = curtir;
 	}
-
-	/**
-	 * @return the listagemDuvidasPorPessoa
-	 */
-	public List<Duvida> getListagemDuvidasPorPessoa() {
-		return listagemDuvidasPorPessoa;
-	}
-
-	/**
-	 * @param listagemDuvidasPorPessoa the listagemDuvidasPorPessoa to set
-	 */
-	public void setListagemDuvidasPorPessoa(List<Duvida> listagemDuvidasPorPessoa) {
-		this.listagemDuvidasPorPessoa = listagemDuvidasPorPessoa;
-	}
-	
-	
 	
 }
