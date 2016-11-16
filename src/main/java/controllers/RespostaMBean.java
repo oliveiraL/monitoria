@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -47,6 +49,10 @@ public class RespostaMBean extends GenericMBean<Resposta> {
 	
 	public Long getQuantidadeResposta(Duvida duvida){
 		return respostaService.quantRespostas(duvida);
+	}
+	
+	public List<Resposta> getListaRespostas(Duvida duvida){
+		return respostaService.listaRespostas(duvida);
 	}
 	
 }

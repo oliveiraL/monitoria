@@ -91,11 +91,9 @@ public class Perfil {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
-
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}

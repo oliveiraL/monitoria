@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 import dominio.Disciplina;
 import dominio.Duvida;
+import dominio.Pessoa;
 import service.DisciplinaService;
 import service.DuvidaService;
 @ManagedBean
@@ -26,10 +27,13 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	@EJB
 	private DuvidaService duvidaService;
 	
+	private boolean curtir;
+	
 	
 	public DuvidaMBean() {
 		// TODO Auto-generated constructor stub
 		obj = new Duvida();
+		curtir = false;
 	}
 	
 	public String list(){
@@ -59,6 +63,26 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 		listDuvidas = null;
 		return "/pages/index.jsf";
 	}
+	
+	public String detalhesDuvida(Duvida duvida){
+		obj = duvida;
+		return "/pages/duvida/view.jsf";
+	}
+	
+	public String listDuvidasPorPessoa(Pessoa pessoa){
+		listDuvidas = duvidaService.listDuvidasPorPessoa(pessoa);
+		return "/pages/duvida/list.jsf";
+	}
+	
+	public String listDuvidasPorDisciplina(Disciplina disciplina){
+		listDuvidas = duvidaService.listDuvidasPorDisciplina(disciplina);
+		return "/pages/duvida/list.jsf";
+	}
+	
+	public String voltar(){
+		return "/pages/index.jsf";
+	}
+
 
 
 	public int getIdDiciplina() {
@@ -83,6 +107,22 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 		this.listDuvidas = listDuvidas;
 	}
 	
-	
+	public void curtida(){
+		curtir = true;
+	}
+
+	/**
+	 * @return the curtir
+	 */
+	public boolean isCurtir() {
+		return curtir;
+	}
+
+	/**
+	 * @param curtir the curtir to set
+	 */
+	public void setCurtir(boolean curtir) {
+		this.curtir = curtir;
+	}
 	
 }

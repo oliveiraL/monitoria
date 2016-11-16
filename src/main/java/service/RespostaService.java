@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -18,5 +20,10 @@ public class RespostaService extends GenericService<Resposta>{
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Long quantRespostas(Duvida duvida){
 		return respostaDao.quantRespostas(duvida.getId());
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Resposta> listaRespostas(Duvida duvida){
+		return respostaDao.listaRespostas(duvida.getId());
 	}
 }
