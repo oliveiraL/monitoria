@@ -57,14 +57,12 @@ public class LoginSinfoServletResponse extends HttpServlet{
 				String accessToken = oAuthClient.accessToken(request, OAuth.HttpMethod.POST).getAccessToken();
 				OauthHelper.getInstance();
 				OauthHelper.setAccessToken(accessToken);
-				loginService.login();
+				req.getSession().setAttribute("usuarioLogado", loginService.login());
 				resp.sendRedirect("/monitoria/pages/index.jsf");
 				
 			} catch (OAuthSystemException | OAuthProblemException e) {
-				Faces.addMessageErro("Erro de conexão com servidor.");
 				resp.sendRedirect("/monitoria/login.jsf");
 			}catch (Exception e) {
-				Faces.addMessageErro(e.getMessage());
 				resp.sendRedirect("/monitoria/login.jsf");
 			}
 		}else{

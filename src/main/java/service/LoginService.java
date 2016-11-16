@@ -25,21 +25,17 @@ public class LoginService {
 	@Inject
 	private ApiService apiService;
 	
-	public void login() throws IOException, NegocioException{
+	public Usuario login() throws IOException, NegocioException{
 		String dadosUsuario = apiService.dadosUsuario();
 		JSONObject jsonObject = new JSONObject(dadosUsuario);
 		String username = jsonObject.getString("username");
 		Usuario u = usuarioService.buscarLogin(username);
 		if (u != null) {
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
-			sessaoHttp.setAttribute("usuarioLogado", u);
+			return u;
 			
 		} else{
 			Usuario usuario = usuarioService.cadastrar();
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
-			sessaoHttp.setAttribute("usuarioLogado", usuario);
+			return usuario;
 		}
 	}
 	

@@ -18,4 +18,16 @@ public class PessoaDao extends GenericDao{
 			return null;
 		}
 	}
+	
+	public Integer proximaPessoa(){
+		String hql = "select COUNT(p) from Pessoa p";
+		Query query = getQuey(hql);
+		return (Integer) query.getSingleResult();
+	}
+	
+	public Integer insert(Pessoa p){
+		String hql = "into pessoas (id_pessoa, cpf, email, nome, sexo) values ("+(proximaPessoa()+1)+", "+p.getCpf()+
+				", "+p.getEmail()+","+p.getNome()+", "+p.getSexo()+")";
+		return getQuey(hql).executeUpdate();
+	}
 }

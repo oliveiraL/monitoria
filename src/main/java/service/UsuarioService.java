@@ -59,6 +59,8 @@ public class UsuarioService extends CrudService<Usuario>{
 			Pessoa p = new Pessoa();
 			p.setCpf("123123123123");
 			pessoaService.salvar(p);
+			
+			
 			Usuario obj = new Usuario();			
 			String dadosUsuario = apiService.dadosUsuario();
 			JSONObject jsonObject = new JSONObject(dadosUsuario);
