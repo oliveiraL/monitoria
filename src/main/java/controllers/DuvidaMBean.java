@@ -82,10 +82,7 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	public String voltar(){
 		return "/pages/index.jsf";
 	}
-	
-	public void mostrarDuvida(){
-		obj = duvidaService.finByID(obj.getId(), Duvida.class);
-	}
+
 
 
 	public int getIdDiciplina() {

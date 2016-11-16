@@ -46,7 +46,7 @@
 			<div class="col-sm-12">
 				<p:selectOneMenu converter="javax.faces.Integer" value="#{duvidaMBean.idDiciplina}" required="true" requiredMessage="Selecione uma diciplina.">
 					<f:selectItem itemLabel="Selecione uma diciplina" noSelectionOption="true"/>
-				   <f:selectItems value="#{perfilMBean.obj.diciplinas}" var="d" itemLabel="#{d.descricao}" itemValue="#{d.id}"/>	   							
+				   <f:selectItems value="#{perfilMBean.obj.disciplinas}" var="d" itemLabel="#{d.descricao}" itemValue="#{d.id}"/>	   							
 				</p:selectOneMenu>
 			</div>
 			<div class="col-sm-12 col-xl-12 prime" style="margin-top: 20px;" >

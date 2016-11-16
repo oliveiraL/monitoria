@@ -19,10 +19,10 @@
 				
 			
 				<div class="row col-md-12" style="margin: 20 20 0 20 ;">
-					<div class="col-sm-1 pull-left" style="padding: 0;">
+					<div class="col-sm-1" style="padding: 0;">
 						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
 					</div>
-					<div class="col-sm-6 pull-left" style="padding: 0; color: rgba(0,0,0,.54);">
+					<div class="col-sm-6" style="padding: 0; color: rgba(0,0,0,.54);">
 					<h:outputText value="#{duvidaMBean.obj.pessoa.nome}" />
 					
 					</div>
@@ -60,17 +60,18 @@
 			<ui:repeat var="resposta" value="#{respostaMBean.getListaRespostas(duvidaMBean.obj)}">
 				<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 				<div class="row col-md-12" style="margin: 20 20 0 20 ;">
-					<div class="col-sm-12" style="padding: 0;">
+					<div class="col-sm-1" style="padding: 0;">
 						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
 					</div>
-					<div class="col-md-12" style="padding: 0; color: rgba(0,0,0,.54);">
-						<h:outputText value="#{respostaMBean.obj.pessoa.nome}" />
-					</div>			
+					<div class="col-sm-6" style="padding: 0; color: rgba(0,0,0,.54);">
+					<h:outputText value="#{resposta.pessoa.nome}" />
+					
+					</div>		
 				</div>
-				
-				<div class="mdl-card__supporting-text">
-				    <h:outputText value="#{resposta.descricao}" />
-				</div>
+				<br/>
+					<div class="mdl-card__supporting-text">
+					    <h:outputText value="#{resposta.descricao}" />
+					</div>
 			 	</div>
 			</ui:repeat>
 	
