@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="usuarios")
@@ -20,6 +21,9 @@ public class Usuario {
 	@Column(name="id_usuario", nullable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	@Column(name="id_usuario_sigaa", unique=true)
+	private Integer idSigaa;
 	
 	/**
 	 * Atributo que guarda o login do Usuario
@@ -39,6 +43,9 @@ public class Usuario {
 	@OneToOne
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa;
+	
+	@Transient
+	private String accessToken;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -83,5 +90,27 @@ public class Usuario {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+
+	public int getIdSigaa() {
+		return idSigaa;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+
+	public void setIdSigaa(Integer idSigaa) {
+		this.idSigaa = idSigaa;
+	}
+	
+	
 	
 }

@@ -4,7 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/include/template.xhtml">
 	<ui:define name="conteudo">
-		<h:form prependId="false">
+		<h:form prependId="false" style="width: 100%;">
 		<style>
 			.mdl-button .mdl-badge[data-badge]:after {
 			    top: -5px;
@@ -16,7 +16,7 @@
 		<ui:repeat var="duvida" value="#{duvidaMBean.listDuvidas}">
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			
-			
+				<h:commandLink action="#{duvidaMBean.detalhesDuvida(duvida)}" value="" style="text-decoration: none !important;">
 				<div class="row" style="margin: 20 20 0 20 ;">
 					<div class="col-sm-1" style="padding: 0;">
 						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
@@ -42,6 +42,7 @@
 			  <div class="mdl-card__supporting-text">
 			    #{duvida.descricao}
 			  </div>
+			  </h:commandLink>
 			  <div class="mdl-card__actions mdl-card--border">
 			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
 			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
@@ -49,67 +50,9 @@
 			    <h:commandLink action="#{respostaMBean.respoder(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
 			    </h:commandLink>
-			    
-			    <h:commandLink action="#{duvidaMBean.detalhesDuvida(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right" >
-			  		<i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
-			  	</h:commandLink>
 			  </div>
 			</div>
-		</ui:repeat>
-		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-			<div class="row" style="margin: 20 20 0 20 ;">
-				<div class="col-sm-1" style="padding: 0;">
-					<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
-				</div>
-				<div class="col-sm-6" style="padding: 0; color: rgba(0,0,0,.54);">
-				<span>Lucio Soares de Oliveira</span><br/>
-				<span>Tecnologia da Informação</span>
-				</div>
-				<div class="col-sm-2 pull-right" style="color: rgba(0,0,0,.54);">
-					22/10/2016
-				</div>
-				<div class="col-sm-6 pull-right" style="color: rgba(0,0,0,.54);text-align: right;">
-					Desenvolvimento WEb
-				</div>				
-			</div>
-		
-		  <div class="mdl-card__title">
-		    <h2 class="mdl-card__title-text" style="color: black;">Welcome</h2>
-		  </div>
-		  <div class="mdl-card__supporting-text">
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		    Mauris sagittis pellentesque lacus eleifend lacinia...
-		  </div>
-		  <div class="mdl-card__actions mdl-card--border">
-		  
-		    <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-		      <i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
-		    </button>
-		    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
-			  <i class="fa fa-file-text-o" aria-hidden="true"></i> Responder
-			</button>
-			<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right">
-				  <i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
-			</button>
-		  </div>
-		</div>
-		
+		</ui:repeat>		
 		<h:commandLink action="#{duvidaMBean.novo()}" value="" id="view-source"  class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;margin:40px;">
 			  <i class="material-icons">add</i> 
 		</h:commandLink>

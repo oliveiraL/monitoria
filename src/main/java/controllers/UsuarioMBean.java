@@ -70,4 +70,6 @@ public class UsuarioMBean extends GenericMBean<Usuario> {
 	}
 	
 	
+	
+	
 }

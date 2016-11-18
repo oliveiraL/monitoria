@@ -62,15 +62,22 @@
 		  <version>1.20.0</version>
 		</dependency>
 		<dependency>
-    <groupId>com.google.http-client</groupId>
-    <artifactId>google-http-client-jackson</artifactId>
-    <version>1.15.0-rc</version>
-</dependency>
-<dependency>
-  <groupId>com.google.oauth-client</groupId>
-  <artifactId>google-oauth-client-appengine</artifactId>
-  <version>1.20.0</version>
-</dependency>
+		    <groupId>com.google.http-client</groupId>
+		    <artifactId>google-http-client-jackson</artifactId>
+		    <version>1.15.0-rc</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.google.oauth-client</groupId>
+		  <artifactId>google-oauth-client-appengine</artifactId>
+		  <version>1.20.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.omnifaces/omnifaces -->
+		<dependency>
+		    <groupId>org.omnifaces</groupId>
+		    <artifactId>omnifaces</artifactId>
+		    <version>2.5.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>monitoria</finalName>

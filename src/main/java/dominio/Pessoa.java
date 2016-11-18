@@ -75,6 +75,14 @@ public class Pessoa {
 		this.email = email;
 	}
 	
+	public String getNomeAP(){
+		String[] arrayNome = nome.split(" "); 
+		if(arrayNome.length > 2){
+			return arrayNome[0]+" "+arrayNome[1];
+		}else{
+			return nome;
+		}
+	}
 	
 	
 	

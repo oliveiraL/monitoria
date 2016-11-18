@@ -31,18 +31,7 @@
 
 <p:messages id="messagem" autoUpdate="true" closable="true"/>
 <img src="/monitoria/imagens/logo-monitoria.png" style="width: 80%; margin-bottom: 40px;" />
-
-  <div class="group">
-	<h:inputText value="#{loginMBean.usuario.login}" /><span class="highlight"></span><span class="bar"></span>
-    <label>Login</label>
-  </div>
-  <div class="group">
-    <h:inputSecret value="#{loginMBean.usuario.senha}" /><span class="highlight"></span><span class="bar"></span>
-    <label>Senha</label>
-  </div>
-  <a href="http://localhost:8080/monitoria/loginsfrequest">Sigaa</a>
-  <h:commandButton class="button buttonBlue" action="#{loginMBean.login}" value="Sing-in" /> 
-	<div><h:commandLink action="#{usuarioMBean.novo()}" value="Cadastre-se" id="link" /> </div>
+  <a class="button buttonBlue" href="http://localhost:8080/monitoria/loginsfrequest" style="text-decoration: none;">SIGAA</a> 
 </h:form>
 <footer>
   <p>IMD-UFRN</p>

@@ -17,7 +17,7 @@ public class PessoaService extends CrudService<Pessoa> {
 
 	public Pessoa cadastrarPessoa(String json) throws NegocioException{		
 		JSONObject jsonObject = new JSONObject(json);
-		Pessoa pessoa = pessoaDao.emailCadastrado(jsonObject.getString("email"));
+		Pessoa pessoa = pessoaDao.emailCadastrado(jsonObject.getString("nome"));
 		if(pessoa != null)
 			return pessoa; 
 		pessoa = new Pessoa();
@@ -25,6 +25,10 @@ public class PessoaService extends CrudService<Pessoa> {
 		pessoa.setEmail(jsonObject.getString("email"));
 		salvar(pessoa);
 		return pessoa;
+	}
+	
+	public Integer insert(Pessoa p){
+		return pessoaDao.insert(p);
 	}
 	
 }

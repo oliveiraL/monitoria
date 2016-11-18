@@ -76,6 +76,9 @@
 		    .demo-card-wide > .mdl-card__title{
 		    	height: 65px !important;
 		    }
+		    .mdl-layout--fixed-drawer>.mdl-layout__content {
+			    margin-left: 15% !important;
+			}
 			</style>
   </h:head>
   <h:body>
@@ -100,7 +103,7 @@
         	<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
         </div>
         <div class="col-sm-6">
-        	<p>#{perfilMBean.obj.pessoa.nome} #{perfilMBean.obj.matricula}</p>
+        	<p style="font-size: 10px;">#{perfilMBean.obj.pessoa.nomeAP} #{perfilMBean.obj.matricula}</p>
         </div>
         </div>
           <div class="demo-avatar-dropdown">
@@ -112,7 +115,10 @@
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
 			  <li class="mdl-menu__item">Configurações</li>
-              <!-- <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li> -->
+			  <li class="mdl-menu__item">Configurações</li>
+			  <li class="mdl-menu__item">Configurações</li>
+			  <li class="mdl-menu__item">Configurações</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
             </ul>
 
           </div>
@@ -132,7 +138,7 @@
           <hr class="menu"/>
           <span style="color:#6f8591; !important;text-transform: uppercase;"><b>#{perfilMBean.obj.papel.descricao}</b></span>
 	          <ui:repeat var="disciplina" value="#{perfilMBean.obj.disciplinas}">
-	          	<h:commandLink action="#{duvidaMBean.listDuvidasPorDisciplina(disciplina)}" class="mdl-navigation__link" immediate="true">
+	          	<h:commandLink action="#{duvidaMBean.listDuvidasPorDisciplina(disciplina)}" class="mdl-navigation__link" immediate="true" title="#{disciplina.descricao}">
 	          		<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>#{disciplina.codigo}
 	          	</h:commandLink>
 
@@ -143,7 +149,7 @@
         </h:form>
       </div>
       <div class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
+        <div class="mdl-grid demo-content" >
           <ui:insert name="conteudo">
             Conteúdo
           </ui:insert>

@@ -2,39 +2,33 @@ package servlet;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
-import org.apache.oltu.oauth2.client.response.GitHubTokenResponse;
-import org.apache.oltu.oauth2.client.response.OAuthAuthzResponse;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.types.GrantType;
 
-import exception.LoginException;
-import exception.NegocioException;
-import helpers.Faces;
+import controllers.UsuarioMBean;
+import dominio.Usuario;
 import helpers.OauthHelper;
-import service.ApiService;
 import service.LoginService;
-import service.UsuarioService;
+
+
 
 @SuppressWarnings("serial")
 @WebServlet("/loginsfresponse")
 public class LoginSinfoServletResponse extends HttpServlet{
 		
-	public LoginSinfoServletResponse() {
-		
-	}
-	@Inject
+	@EJB
 	private LoginService loginService;
 	
 	@Override
@@ -55,11 +49,14 @@ public class LoginSinfoServletResponse extends HttpServlet{
 				        .buildQueryMessage();
 				OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
 				String accessToken = oAuthClient.accessToken(request, OAuth.HttpMethod.POST).getAccessToken();
-				OauthHelper.getInstance();
-				OauthHelper.setAccessToken(accessToken);
-				req.getSession().setAttribute("usuarioLogado", loginService.login());
-				resp.sendRedirect("/monitoria/pages/index.jsf");
-				
+				Usuario usuario = loginService.login(accessToken);
+				if(usuario == null){
+					resp.sendRedirect("/monitoria/login.jsf");
+				}else{
+					HttpSession session= req.getSession();  
+			        session.setAttribute("usuarioLogado",usuario);
+					resp.sendRedirect("/monitoria/pages/index.jsf");
+				}
 			} catch (OAuthSystemException | OAuthProblemException e) {
 				resp.sendRedirect("/monitoria/login.jsf");
 			}catch (Exception e) {

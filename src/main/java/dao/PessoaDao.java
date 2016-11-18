@@ -8,10 +8,10 @@ import dominio.Pessoa;
 
 @Stateless
 public class PessoaDao extends GenericDao{
-	public Pessoa emailCadastrado(String email){
-		String hql = "select p from Pessoa p where p.email like :email ";
+	public Pessoa emailCadastrado(String nome){
+		String hql = "select p from Pessoa p where p.nome like :nome ";
 		Query query = getQuey(hql);
-		query.setParameter("email", email);
+		query.setParameter("nome", nome);
 		try{
 			return (Pessoa) query.getSingleResult();
 		}catch (NoResultException e) {
@@ -19,10 +19,10 @@ public class PessoaDao extends GenericDao{
 		}
 	}
 	
-	public Integer proximaPessoa(){
+	public Long proximaPessoa(){
 		String hql = "select COUNT(p) from Pessoa p";
 		Query query = getQuey(hql);
-		return (Integer) query.getSingleResult();
+		return (Long) query.getSingleResult();
 	}
 	
 	public Integer insert(Pessoa p){

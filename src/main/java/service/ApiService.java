@@ -3,6 +3,7 @@ package service;
 import javax.ejb.Stateless;
 
 import dominio.DadosAPI;
+import dominio.Usuario;
 import exception.APIException;
 import helpers.OauthHelper;
 
@@ -20,15 +21,15 @@ public class ApiService {
 	}
 	
 	
-	public String dadosUsuario(){
-		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/usuario-services/services/usuario/info");
+	public String dadosUsuario(Usuario usuario){
+		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/usuario-services/services/usuario/info",usuario);
 	}
 	
-	public String perfilUsuario(String idUsuario){
-		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/ensino-services/services/consulta/perfilusuario/"+idUsuario);
+	public String perfilUsuario(String idUsuario,Usuario usuario){
+		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/ensino-services/services/consulta/perfilusuario/"+idUsuario,usuario);
 	}
 	
-	public String turmasDiscente(String idDiscente){
-		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/ensino-services/services/consulta/turmas/usuario/discente/"+idDiscente);
+	public String turmasDiscente(String idDiscente,Usuario usuario){
+		return OauthHelper.getInstance().requestResourceGet(DadosAPI.URL_API+"/ensino-services/services/consulta/turmas/usuario/discente/"+idDiscente,usuario);
 	}
 }
