@@ -4,6 +4,24 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/include/template.xhtml">
 	<ui:define name="conteudo">
+	
+	<style>
+		.resposta{
+			    min-height: 100px !important;
+			    width: 95% !important;
+			    background: rgba(255, 82, 82, 0.2) !important;
+			    margin: 5px 20px 5px 20px !important;
+		}
+		
+		.resposta_texto{ 
+			padding: 0px 20px 20px 100px !important;
+			text-align: justify !important;
+		}
+		.descurtir{
+	color: #ff5252 !important;
+	background-color: antiquewhite !important;
+}
+	</style>
 		<h:form prependId="false" style="width: 100%">
 		<style>
 			.mdl-button .mdl-badge[data-badge]:after {
@@ -14,7 +32,7 @@
 			}
 		</style>
 	
-			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+			<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="padding-bottom: 10px !important;">
 			
 				
 			
@@ -27,7 +45,7 @@
 					
 					</div>
 					<div class="col-sm-4 pull-right" style="color: rgba(0,0,0,.54); text-align: right;">
-						<h:outputText value="#{duvida.dataCadastro}" >
+						<h:outputText value="#{duvidaMBean.obj.dataCadastro}" >
 						    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
 						</h:outputText>
 						
@@ -47,18 +65,21 @@
 			    <h:outputText value="#{duvidaMBean.obj.descricao}" />
 			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
-			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
-			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
+			     <h:commandLink action="#{curtidaMBean.curtir(duvidaMBean.obj)}" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{!curtidaMBean.existeCurtida(duvidaMBean.obj)}" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvidaMBean.obj)}"></span>
+			    </h:commandLink>
+			    <h:commandLink action="#{curtidaMBean.descurtir(duvidaMBean.obj)}" class="descurtir mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{curtidaMBean.existeCurtida(duvidaMBean.obj)}" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvidaMBean.obj)}"></span>
 			    </h:commandLink>
 			    <h:commandLink action="#{respostaMBean.respoder(duvidaMBean.obj)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
-					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
+					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvidaMBean.obj)}"></span>
 			    </h:commandLink>
 			    
-			  </div>
+			</div>
 			
 			
 			<ui:repeat var="resposta" value="#{respostaMBean.getListaRespostas(duvidaMBean.obj)}">
-				<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+				<div class="demo-card-wide mdl-card mdl-shadow--2dp resposta">
 				<div class="row col-md-12" style="margin: 20 20 0 20 ;">
 					<div class="col-sm-1" style="padding: 0;">
 						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
@@ -68,8 +89,7 @@
 					
 					</div>		
 				</div>
-				<br/>
-					<div class="mdl-card__supporting-text">
+					<div class="mdl-card__supporting-text resposta_texto">
 					    <h:outputText value="#{resposta.descricao}" />
 					</div>
 			 	</div>

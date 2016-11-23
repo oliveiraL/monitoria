@@ -12,6 +12,10 @@
 			    background-color: white !important;
 			    color: black !important;
 			}
+			.descurtir{
+	color: #ff5252 !important;
+	background-color: antiquewhite !important;
+}
 		</style>
 		<ui:repeat var="duvida" value="#{duvidaMBean.listDuvidas}">
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -44,8 +48,11 @@
 			  </div>
 			  </h:commandLink>
 			  <div class="mdl-card__actions mdl-card--border">
-			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
-			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
+			    <h:commandLink action="#{curtidaMBean.curtir(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{!curtidaMBean.existeCurtida(duvida)}" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvida)}"></span>
+			    </h:commandLink>
+			    <h:commandLink action="#{curtidaMBean.descurtir(duvida)}" class="descurtir mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{curtidaMBean.existeCurtida(duvida)}" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvida)}"></span>
 			    </h:commandLink>
 			    <h:commandLink action="#{respostaMBean.respoder(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>

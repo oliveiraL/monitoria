@@ -1,20 +1,17 @@
 package service;
 
 
-import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
-
 import org.json.JSONObject;
 
 import dao.UsuarioDAO;
 import dominio.Pessoa;
 import dominio.Usuario;
-import exception.APIException;
 import exception.NegocioException;
 
 @Stateless
@@ -36,7 +33,8 @@ public class UsuarioService extends CrudService<Usuario>{
 	public Usuario buscarLogin(String idSigaa) {
 		return usuarioDao.buscarLogin(idSigaa);
 	}
-	
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Usuario cadastrar(String accessToken) throws NegocioException {
 		try {
 			Usuario obj = new Usuario();

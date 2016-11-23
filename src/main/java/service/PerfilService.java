@@ -29,6 +29,10 @@ public class PerfilService extends GenericService<Perfil>{
 		return perfilDao.findByPessoa(pessoa.getId());
 	}
 	
+	public Perfil findByPessoa(String idPessoa){
+		return perfilDao.findByPessoa(Integer.parseInt(idPessoa));
+	}
+	
 	public void cadastrarPerfil(String json, Usuario usuario) throws NegocioException{
 		JSONObject jsonObject = new JSONObject(json);
 		jsonObject = jsonObject.getJSONObject("listaVinculosUsuario");

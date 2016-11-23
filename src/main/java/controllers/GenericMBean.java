@@ -46,7 +46,12 @@ public class GenericMBean<T> {
 	public List<T> listar() {
 		return service.listar((Class<T>) obj.getClass());
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public T finByID(int id) {
+		return service.finByID(id, (Class<T>) obj.getClass());
+	}
+	
 	public T getObj() {
 		return obj;
 	}

@@ -22,6 +22,7 @@ public class CrudDao<T> {
 		em.merge(obj);
 	}
 	public void remover(T obj) {
+		obj = em.merge(obj);
 		em.remove(obj);
 	}
 	

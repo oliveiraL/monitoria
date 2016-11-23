@@ -12,13 +12,17 @@
 			    background-color: white !important;
 			    color: black !important;
 			}
+			.descurtir{
+	color: #ff5252 !important;
+	background-color: antiquewhite !important;
+}
 		</style>
 		<ui:fragment rendered = "#{duvidaMBean.listDuvidas.size() > 0}">
 		
 		<ui:repeat var="duvida" value="#{duvidaMBean.listDuvidas}">
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			
-			
+				<h:commandLink action="#{duvidaMBean.detalhesDuvida(duvida)}" value="" style="text-decoration: none !important;">
 				<div class="row" style="margin: 20 20 0 20 ;">
 					<div class="col-sm-1" style="padding: 0;">
 						<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
@@ -44,17 +48,18 @@
 			  <div class="mdl-card__supporting-text">
 			    #{duvida.descricao}
 			  </div>
+			  
+			  	</h:commandLink>
 			  <div class="mdl-card__actions mdl-card--border">
-			    <h:commandLink action="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" >
-			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir
+			    <h:commandLink action="#{curtidaMBean.curtir(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{!curtidaMBean.existeCurtida(duvida)}" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvida)}"></span>
+			    </h:commandLink>
+			    <h:commandLink action="#{curtidaMBean.descurtir(duvida)}" class="descurtir mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{curtidaMBean.existeCurtida(duvida)}" >
+			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvida)}"></span>
 			    </h:commandLink>
 			    <h:commandLink action="#{respostaMBean.respoder(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvida)}"></span>
 			    </h:commandLink>
-			    
-			    <h:commandLink action="#{duvidaMBean.detalhesDuvida(duvida)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent pull-right" >
-			  		<i class="fa fa-file-text-o" aria-hidden="true"></i> Visualizar
-			  	</h:commandLink>
 			  </div>
 			</div>
 		</ui:repeat>

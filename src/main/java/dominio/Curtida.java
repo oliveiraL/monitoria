@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="curtida")
+@Table(name="curtidas")
 public class Curtida {
 	
 	@Id
@@ -22,12 +22,16 @@ public class Curtida {
 	private int id;
 
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="duvida_id")
 	private Duvida duvida;
 	
+	@OneToOne
+	@JoinColumn(name="resposta_id")
+	private Resposta resposta;
 	
-	@ManyToOne
+	
+	@OneToOne
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa;
 	
@@ -35,7 +39,7 @@ public class Curtida {
 	private Date data;
 	
 	/**
-	 * Construtor padrão da classe
+	 * Construtor padrï¿½o da classe
 	 */
 	public Curtida(){
 		
@@ -96,6 +100,15 @@ public class Curtida {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public Resposta getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(Resposta resposta) {
+		this.resposta = resposta;
+	}
+	
 	
 	
 }

@@ -32,8 +32,6 @@ public class DuvidaMBean extends GenericMBean<Duvida> {
 	
 	public DuvidaMBean() {
 		// TODO Auto-generated constructor stub
-		obj = new Duvida();
-		curtir = false;
 	}
 	
 	public String list(){

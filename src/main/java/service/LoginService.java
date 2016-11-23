@@ -21,7 +21,6 @@ public class LoginService {
 	@Inject
 	private ApiService apiService;
 	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Usuario login(String accessToken) throws IOException, NegocioException{
 		Usuario usuario = new Usuario();
 		usuario.setAccessToken(accessToken);
