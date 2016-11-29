@@ -18,7 +18,7 @@ public class DuvidaDao extends GenericDao{
 	
 	@SuppressWarnings("unchecked")
 	public List<Duvida> listDuvidasPorPessoa(int idPessoa){
-		String hql = "Select d from Duvida d where d.pessoa.id = :idPessoa";
+		String hql = "Select d from Duvida d where d.pessoa.id = :idPessoa ORDER BY d.dataCadastro DESC";
 		Query query = getQuey(hql);
 		query.setParameter("idPessoa", idPessoa);
 		return query.getResultList();	
