@@ -36,11 +36,9 @@ public class ComentarioMBean extends GenericMBean<Comentario> {
 	public String comentarResposta(Resposta resposta){
 		obj = new Comentario();
 		respostaSelecionada = resposta;
-		return "/pages/comentario/form.jsf";
+		return "/pages/comentario/formByResposta.jsf";
 	}
 	
-	
-
 	public Duvida getDuvidaSelecionada() {
 		return duvidaSelecionada;
 	}
@@ -49,17 +47,18 @@ public class ComentarioMBean extends GenericMBean<Comentario> {
 		return respostaSelecionada;
 	}
 
-	@Override
-	public String salvar() {
+	public String salvarComentarioByDuvida() {
 		// TODO Auto-generated method stub
 		obj.setPessoa(getUsuarioLogado().getPessoa());
-		
-		if(obj.getDuvida() != null){
-			obj.setDuvida(duvidaSelecionada);
-		}
-		if(obj.getResposta() != null){
-			obj.setResposta(respostaSelecionada);
-		}
+		obj.setDuvida(duvidaSelecionada);
+		super.salvar();
+		return "/pages/index.jsf";
+	}
+	
+	public String salvarComentarioByResposta() {
+		// TODO Auto-generated method stub
+		obj.setPessoa(getUsuarioLogado().getPessoa());
+		obj.setResposta(respostaSelecionada);
 		super.salvar();
 		return "/pages/index.jsf";
 	}
@@ -83,11 +82,11 @@ public class ComentarioMBean extends GenericMBean<Comentario> {
 		return comentarioService.quantComentariosByResposta(resposta);
 	}
 	
-	public List<Resposta> getListaComentarioByDuvida(Duvida duvida){
+	public List<Comentario> getListaComentarioByDuvida(Duvida duvida){
 		return comentarioService.getListaComentarioByDuvida(duvida);
 	}
 	
-	public List<Resposta> getListaComentarioByResposta(Resposta resposta){
+	public List<Comentario> getListaComentarioByResposta(Resposta resposta){
 		return comentarioService.getListaComentarioByResposta(resposta);
 	}
 	

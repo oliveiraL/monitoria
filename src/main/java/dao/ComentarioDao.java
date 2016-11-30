@@ -5,27 +5,28 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+import dominio.Comentario;
 import dominio.Resposta;
 
 @Stateless
 public class ComentarioDao extends GenericDao {
 	
 	public Long quantComentariosByDuvida(int idDuvida){
-		String hql = "Select COUNT(c) from Comentario r where c.duvida.id = :idDuvida ";
+		String hql = "Select COUNT(c) from Comentario c where c.duvida.id = :idDuvida ";
 		Query query = getQuey(hql);
 		query.setParameter("idDuvida", idDuvida);
 		return (Long) query.getSingleResult();
 	}
 	
 	public Long quantComentariosByResposta(int idResposta){
-		String hql = "Select COUNT(c) from Comentario r where c.resposta.id = :idResposta ";
+		String hql = "Select COUNT(c) from Comentario c where c.resposta.id = :idResposta ";
 		Query query = getQuey(hql);
 		query.setParameter("idResposta", idResposta);
 		return (Long) query.getSingleResult();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Resposta> getListaComentarioByDuvida(int idDuvida){
+	public List<Comentario> getListaComentarioByDuvida(int idDuvida){
 		String hql = "Select c from Comentario c where c.duvida.id = :idDuvida";
 		Query query = getQuey(hql);
 		query.setParameter("idDuvida", idDuvida);
@@ -33,7 +34,7 @@ public class ComentarioDao extends GenericDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Resposta> getListaComentarioByResposta(int idResposta){
+	public List<Comentario> getListaComentarioByResposta(int idResposta){
 		String hql = "Select c from Comentario c where c.resposta.id = :idResposta";
 		Query query = getQuey(hql);
 		query.setParameter("idResposta", idResposta);

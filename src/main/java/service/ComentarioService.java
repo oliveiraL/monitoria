@@ -14,7 +14,7 @@ import dominio.Duvida;
 import dominio.Resposta;
 
 @Stateless
-public class ComentarioService extends GenericService<Comentario>{
+public class ComentarioService extends CrudService<Comentario>{
 	
 	@Inject
 	private ComentarioDao comentarioDao;
@@ -30,12 +30,12 @@ public class ComentarioService extends GenericService<Comentario>{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Resposta> getListaComentarioByDuvida(Duvida duvida){
+	public List<Comentario> getListaComentarioByDuvida(Duvida duvida){
 		return comentarioDao.getListaComentarioByDuvida(duvida.getId());
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Resposta> getListaComentarioByResposta(Resposta resposta){
+	public List<Comentario> getListaComentarioByResposta(Resposta resposta){
 		return comentarioDao.getListaComentarioByResposta(resposta.getId());
 	}
 }

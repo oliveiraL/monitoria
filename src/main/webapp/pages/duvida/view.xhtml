@@ -13,6 +13,13 @@
 			    margin: 5px 20px 5px 20px !important;
 		}
 		
+		.comentario{
+			    min-height: 100px !important;
+			    width: 95% !important;
+			    background: rgba(255, 82, 82, 0.0) !important;
+			    margin: 5px 20px 5px 20px !important;
+		}
+		
 		.resposta_texto{ 
 			padding: 0px 20px 20px 100px !important;
 			text-align: justify !important;
@@ -64,12 +71,15 @@
 			  <div class="mdl-card__supporting-text">
 			    <h:outputText value="#{duvidaMBean.obj.descricao}" />
 			  </div>
-			  <div class="mdl-card__actions mdl-card--border">
+			  <div class="mdl-card__actions">
 			     <h:commandLink action="#{curtidaMBean.curtir(duvidaMBean.obj)}" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{!curtidaMBean.existeCurtida(duvidaMBean.obj)}" >
 			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvidaMBean.obj)}"></span>
 			    </h:commandLink>
 			    <h:commandLink action="#{curtidaMBean.descurtir(duvidaMBean.obj)}" class="descurtir mdl-button mdl-js-button mdl-js-ripple-effect" style="margin-right: 10px;" rendered="#{curtidaMBean.existeCurtida(duvidaMBean.obj)}" >
 			    	<i class="fa fa-thumbs-up" aria-hidden="true"></i> Curtir<span class="mdl-badge" data-badge="#{curtidaMBean.getQtdCurtidas(duvidaMBean.obj)}"></span>
+			    </h:commandLink>
+			    <h:commandLink action="#{comentarioMBean.comentarDuvida(duvidaMBean.obj)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" style="background: rgba(255, 82, 82, 0.6) !important;">
+					<i class="fa fa-file-text-o" aria-hidden="true"></i> Comentar<span class="mdl-badge" data-badge="#{comentarioMBean.getQuantidadeComentarioByDuvida(duvidaMBean.obj)}"></span>
 			    </h:commandLink>
 			    <h:commandLink action="#{respostaMBean.respoder(duvidaMBean.obj)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
 					<i class="fa fa-file-text-o" aria-hidden="true"></i> Responder<span class="mdl-badge" data-badge="#{respostaMBean.getQuantidadeResposta(duvidaMBean.obj)}"></span>
@@ -77,6 +87,38 @@
 			    
 			</div>
 			
+			<div class="mdl-card__actions mdl-card--border" style="padding-left: 50px;">
+				<ui:fragment rendered="#{comentarioMBean.getQuantidadeComentarioByDuvida(duvidaMBean.obj) > 0}">
+					<h:outputLabel value="" >
+						Comentários
+					</h:outputLabel>
+				</ui:fragment>
+				
+				<ui:repeat var="comentario" value="#{comentarioMBean.getListaComentarioByDuvida(duvidaMBean.obj)}">
+					<div class="demo-card-wide mdl-card mdl-shadow--2dp comentario">
+					<div class="row col-md-12" style="margin: 20 20 0 20 ;">
+						<div class="col-sm-1" style="padding: 0;">
+							<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
+						</div>
+						<div class="col-sm-6" style="padding: 0;">
+						<h:outputText value="#{comentario.pessoa.nome}" />
+						
+						</div>		
+					</div>
+						<div class="mdl-card__supporting-text resposta_texto">
+						    <h:outputText value="#{comentario.descricao}" />
+						</div>
+				 	</div>
+				</ui:repeat>
+			
+			</div>
+			
+			<div class="mdl-card__actions mdl-card--border">
+			<ui:fragment rendered="#{respostaMBean.getQuantidadeResposta(duvidaMBean.obj) > 0}">
+				<h:outputLabel value="" >
+					Respostas
+				</h:outputLabel>
+			</ui:fragment>
 			
 			<ui:repeat var="resposta" value="#{respostaMBean.getListaRespostas(duvidaMBean.obj)}">
 				<div class="demo-card-wide mdl-card mdl-shadow--2dp resposta">
@@ -92,9 +134,41 @@
 					<div class="mdl-card__supporting-text resposta_texto">
 					    <h:outputText value="#{resposta.descricao}" />
 					</div>
+				
 			 	</div>
+			 	<div class="mdl-card__actions">
+				 	<h:commandLink action="#{comentarioMBean.comentarResposta(resposta)}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" style="background: rgba(255, 82, 82, 0.6) !important;margin-left: 12px;margin-top:-12px">
+						<i class="fa fa-file-text-o" aria-hidden="true"></i> Comentar<span class="mdl-badge" data-badge="#{comentarioMBean.getQuantidadeComentarioByResposta(resposta)}"></span>
+				    </h:commandLink>
+			    </div>
+			    
+			    <div class="mdl-card__actions mdl-card--border" style="padding-left: 50px;">
+			    <ui:fragment rendered="#{comentarioMBean.getQuantidadeComentarioByResposta(resposta) > 0}">
+					<h:outputLabel value="" >
+						Comentários
+					</h:outputLabel>
+				</ui:fragment>
+				<ui:repeat var="comentario" value="#{comentarioMBean.getListaComentarioByResposta(resposta)}">
+					<div class="demo-card-wide mdl-card mdl-shadow--2dp comentario">
+					<div class="row col-md-12" style="margin: 20 20 0 20 ;">
+						<div class="col-sm-1" style="padding: 0;">
+							<img src="/monitoria/imagens/user.jpg" class="demo-avatar"/>
+						</div>
+						<div class="col-sm-6" style="padding: 0;">
+						<h:outputText value="#{comentario.pessoa.nome}" />
+						
+						</div>		
+					</div>
+						<div class="mdl-card__supporting-text resposta_texto">
+						    <h:outputText value="#{comentario.descricao}" />
+						</div>
+				 	</div>
+				</ui:repeat>
+			
+			</div>
 			</ui:repeat>
 	
+		</div>
 		</div>
 		
 		<h:commandLink action="#{duvidaMBean.voltar()}" value="" id="view-source"  class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" style="float:right;margin:40px;">

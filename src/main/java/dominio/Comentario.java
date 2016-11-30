@@ -29,7 +29,7 @@ public class Comentario {
 	private Duvida duvida;
 	
 	@OneToOne
-	@JoinColumn(name="duvida_id")
+	@JoinColumn(name="resposta_id")
 	private Resposta resposta;
 	
 	@OneToOne

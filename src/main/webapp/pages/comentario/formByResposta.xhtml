@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/include/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+	<ui:define name="conteudo">
+	<style>
+		.demo-card-wide.mdl-card {
+  			width: 100% !important;
+		}
+		.mdl-textfield{
+			width: 100%;
+		}
+	 	.prime > label.ui-selectonemenu-label{
+			color: black !important;
+		}
+		.ui-selectonemenu .ui-selectonemenu-trigger{
+			width: 25px !important;
+		}
+		
+		.ui-selectonemenu{
+			width: 80% !important;
+		}
+		.ui-selectonemenu .ui-selectonemenu-label{
+			color: black !important;
+		}
+		p {
+    		font-size: 20px;
+    	}
+	</style>
+	<h:form prependId="false" class="demo-card-wide mdl-card mdl-shadow--2dp">
+		
+		<p:growl id="messagem" autoUpdate="true" closable="true" style="margin: 20px;"/>
+		<div class="page-header" ><h2 style="color:rgba(0,0,0,0.5) !important; margin-top: -10px;margin-left: 20px;">Cadastro de Comentário</h2></div>
+		<div class="row" style="margin: 20px;">
+			<div class="col-sm-6 col-xl-12">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			    	<label class="mdl-textfield__label" style="margin-top: -25px;">Assunto</label>
+			    	<p>#{comentarioMBean.respostaSelecionada.duvida.assunto}</p>
+			  	</div>
+			</div>
+			<div class="col-sm-6 col-xl-12">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			    	<label class="mdl-textfield__label" style="margin-top: -25px;">Disciplina</label>
+			    	<p>#{comentarioMBean.respostaSelecionada.duvida.disciplina.descricao}</p>
+			  	</div>
+			</div>
+			<div class="col-sm-12 col-xl-12">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<h:inputTextarea value="#{comentarioMBean.obj.descricao}" class="mdl-textfield__input" id="descricao" required="true" requiredMessage="Preencha o campo descrição da resposta" />
+			    <label class="mdl-textfield__label" for="descricao">Comentario *</label>
+			  </div>
+			</div>
+			<div class="col-sm-12 col-xl-12 prime" style="margin-top: 20px;" >
+				<h:commandLink action="#{duvidaMBean.list()}" style="float: left;" class="mdl-button mdl-js-button mdl-js-ripple-effect" immediate="true">
+					Cancelar
+				</h:commandLink>
+				<h:commandLink action="#{comentarioMBean.salvarComentarioByResposta()}" style="float: right;" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
+					Comentar
+				</h:commandLink>
+			
+			</div>
+		</div>
+	</h:form>
+	</ui:define>
+</ui:composition>
