@@ -6,16 +6,20 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+import com.google.common.net.MediaType;
 
 import dominio.Disciplina;
 import dominio.Duvida;
 import dominio.Pessoa;
 import dominio.Resposta;
-import dominio.Usuario;
 import dto.DuvidaDTO;
 import dto.RespostaDTO;
 import service.CurtidaService;
@@ -62,15 +66,24 @@ public class DuvidaRest {
 		return duvidaDTO(duvidaService.listDuvidasPorPessoa(p), p);
 	}
 	@GET
-	@Path("/disciplina/{idTurma}/{id}")
+	@Path("/disciplina/{idDisciplina}/{idPessoa}")
 	@Produces("application/json; charset=UTF-8")
-	public List<DuvidaDTO> turmaDuvidas(@PathParam("id") String idPessoa, @PathParam("id") String idTurma){
+	public List<DuvidaDTO> turmaDuvidas(@PathParam("idPessoa") String idPessoa, @PathParam("idDisciplina") String idTurma){
 		Pessoa p = pessoaService.finByID(Integer.parseInt(idPessoa), Pessoa.class);
 		Disciplina disciplina = disciplinaService.finByID(Integer.parseInt(idTurma), Disciplina.class);
 		return duvidaDTO(duvidaService.listDuvidasPorDisciplina(disciplina), p);
 	}
 	
-	@SuppressWarnings("unused")
+	
+	@POST
+	@Path("/post")
+	@Consumes("application/json; charset=UTF-8")
+	public Response salvarDuvida(String request){
+		
+		
+		return Response.status(201).entity("").build();
+	}
+
 	private List<DuvidaDTO> duvidaDTO(List<Duvida> duvidas, Pessoa pessoa){
 		ArrayList<DuvidaDTO> duvidasDTO = new ArrayList<DuvidaDTO>();
 		SimpleDateFormat dt = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss"); 
